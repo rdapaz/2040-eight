@@ -22,6 +22,10 @@
 #include "picosystem.hpp"
 #include "assets/spritesheet.hpp"
 #include "assets/logo_ahnlak_1bit.hpp"
+#include "launcher_app.h"
+
+/* Names this image in the launcher menu (harmless when run standalone). */
+LAUNCHER_DECLARE_APP("2040-Eight", 1);
 
 
 /* Local structures and types. */
@@ -851,7 +855,7 @@ void draw( uint32_t p_tick )
     }
     
     /* Play the next note if ready. */
-    if ( !picosystem::audio_playing() )
+    if ( !picosystem::playing() )   // renamed from audio_playing() in current picosystem SDK
     {
       play( g_voice, g_tune[g_tune_note].frequency, g_tune[g_tune_note].duration, 50 );
       g_tune_note++;
